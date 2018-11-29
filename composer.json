@@ -1,0 +1,36 @@
+{
+  "name": "pxc/json-api-client",
+  "description": "A copy of swisnl/json-api-client with headers configuration in request.",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Kim Chen",
+      "email": "kim.chen@primexconnect.com"
+    }
+  ],
+  "type": "library",
+  "require": {
+    "php": ">=7.1",
+    "swisnl/json-api-client": "^0.10.3",
+    "php-http/message": "^1.7",
+    "illuminate/support": "^5.7",
+    "php-http/client-implementation": "^1.0",
+    "php-http/discovery": "^1.0"
+  },
+  "require-dev": {
+    "php-http/guzzle6-adapter": "^2.0",
+    "graham-campbell/testbench": "^5.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "PXC\\JsonApi\\Client\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "PXC\\JsonApi\\Client\\Providers\\ServiceProvider"
+      ]
+    }
+  }
+}
