@@ -13,7 +13,6 @@
     "php": ">=7.1",
     "swisnl/json-api-client": "^0.10.3",
     "php-http/message": "^1.7",
-    "illuminate/support": "^5.7",
     "php-http/client-implementation": "^1.0",
     "php-http/discovery": "^1.0"
   },
