@@ -29,6 +29,14 @@ abstract class BasicRequest implements BasicRequestInterface
     protected $parser;
 
     /**
+     * @var array
+     */
+    protected $headers = [
+        'Accept'       => 'application/json',
+        'Content-Type' => 'application/json',
+    ];
+
+    /**
      * @param \Swis\JsonApi\Client\Interfaces\ClientInterface $client
      * @param \Swis\JsonApi\Client\ItemDocumentSerializer $itemDocumentSerializer
      * @param \Swis\JsonApi\Client\Interfaces\ParserInterface $parser
@@ -58,6 +66,13 @@ abstract class BasicRequest implements BasicRequestInterface
     public function setBaseUri(string $baseUri)
     {
         $this->client->setBaseUri($baseUri);
+    }
+
+    /**
+     * @param array $headers
+     */
+    public function setHeader(array $headers) {
+        $this->headers = array_merge($this->headers, $headers);
     }
 
     /**
