@@ -14,6 +14,11 @@ interface BasicRequestInterface
     function getHeader(bool $public): array;
 
     /**
+     * @param array $headers
+     */
+    function setHeader(array $headers);
+
+    /**
      * @param string $endpoint
      *
      * @param bool $public

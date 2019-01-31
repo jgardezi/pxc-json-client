@@ -14,9 +14,16 @@ class ClientRequest extends BasicRequest implements ClientRequestInterface
     function getHeader(bool $public): array
     {
         if ($public) {
-            return [];
+            return $this->headers;
         }
-        return ['Authorization' => "Bearer " . $token = Request::session()->get('pxc.token')];
+
+        $token = Request::get('pxc.token');
+        if (!$token) {
+            $token = Request::session()->get('pxc.token');
+        }
+        return array_merge(
+            ['Authorization' => "Bearer " . $token], $this->headers
+        );
     }
 
 
