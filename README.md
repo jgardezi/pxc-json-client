@@ -14,6 +14,17 @@ A copy of [json-api-client](https://github.com/swisnl/json-api-client/)
 
 ### @todo this documentation needs to be updated.
 
+## Upgrade from 1.0.x to 1.2.x
+
+The dependency `swisnl/json-api-client` has been upgraded from '0.10.x' to '0.20.x', supporting Lumen 5.8. In your `ServiceProvider`
+
+- Replace `use Swis\JsonApi\Client\Interfaces\ParserInterface;
+` with `use Swis\JsonApi\Client\Interfaces\ResponseParserInterface;` 
+- Replace `use Swis\JsonApi\Client\ItemDocumentSerializer;` with `use \JsonSSerializable;`
+- Change the other part of the file accordingly.
+
+More details refer to the commit `1a9a963`.
+
 ## Installation
 
 ``` bash
