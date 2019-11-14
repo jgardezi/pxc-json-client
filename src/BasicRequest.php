@@ -6,8 +6,9 @@ use Swis\JsonApi\Client\Interfaces\ClientInterface;
 use Swis\JsonApi\Client\Interfaces\DocumentInterface;
 use Swis\JsonApi\Client\Interfaces\ItemDocumentInterface;
 use Swis\JsonApi\Client\Interfaces\ParserInterface;
-use Swis\JsonApi\Client\Interfaces\ResponseInterface;
-use Swis\JsonApi\Client\ItemDocumentSerializer;
+use Swis\JsonApi\Client\Interfaces\ResponseParserInterface;
+use Psr\Http\Message\ResponseInterface;
+use JsonSerializable;
 use Swis\JsonApi\Client\Document;
 use Swis\JsonApi\Client\InvalidResponseDocument;
 
@@ -39,12 +40,12 @@ abstract class BasicRequest implements BasicRequestInterface
     /**
      * @param \Swis\JsonApi\Client\Interfaces\ClientInterface $client
      * @param \Swis\JsonApi\Client\ItemDocumentSerializer $itemDocumentSerializer
-     * @param \Swis\JsonApi\Client\Interfaces\ParserInterface $parser
+     * @param \Swis\JsonApi\Client\Interfaces\ResponseParserInterface $parser
      */
     public function __construct(
         ClientInterface $client,
-        ItemDocumentSerializer $itemDocumentSerializer,
-        ParserInterface $parser
+        JsonSerializable $itemDocumentSerializer,
+        ResponseParserInterface $parser
     )
     {
         $this->client = $client;
@@ -148,12 +149,8 @@ abstract class BasicRequest implements BasicRequestInterface
      */
     protected function parseResponse(ResponseInterface $response): DocumentInterface
     {
-        if ($response->hasBody()) {
-            return $this->parser->deserialize($response->getBody());
-        }
-
-        if ($response->hasSuccessfulStatusCode()) {
-            return new Document();
+        if (!empty($response->getBody())) {
+            return $this->parser->parse($response);
         }
 
         return new InvalidResponseDocument();
