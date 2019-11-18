@@ -8,7 +8,7 @@ use Swis\JsonApi\Client\Interfaces\ItemDocumentInterface;
 use Swis\JsonApi\Client\Interfaces\ParserInterface;
 use Swis\JsonApi\Client\Interfaces\ResponseParserInterface;
 use Psr\Http\Message\ResponseInterface;
-use JsonSerializable;
+use PXC\JsonApi\Client\ItemDocumentSerializerInterface;
 use Swis\JsonApi\Client\Document;
 use Swis\JsonApi\Client\InvalidResponseDocument;
 
@@ -39,12 +39,12 @@ abstract class BasicRequest implements BasicRequestInterface
 
     /**
      * @param \Swis\JsonApi\Client\Interfaces\ClientInterface $client
-     * @param \Swis\JsonApi\Client\ItemDocumentSerializer $itemDocumentSerializer
+     * @param PXC\JsonApi\Client\ItemDocumentSerializerInterface $itemDocumentSerializer
      * @param \Swis\JsonApi\Client\Interfaces\ResponseParserInterface $parser
      */
     public function __construct(
         ClientInterface $client,
-        JsonSerializable $itemDocumentSerializer,
+        ItemDocumentSerializerInterface $itemDocumentSerializer,
         ResponseParserInterface $parser
     )
     {
