@@ -20,10 +20,8 @@ The dependency `swisnl/json-api-client` has been upgraded from '0.10.x' to '0.20
 
 - Replace `use Swis\JsonApi\Client\Interfaces\ParserInterface;
 ` with `use Swis\JsonApi\Client\Interfaces\ResponseParserInterface;` 
-- Replace `use Swis\JsonApi\Client\ItemDocumentSerializer;` with `use \JsonSSerializable;`
+- Replace `use Swis\JsonApi\Client\ItemDocumentSerializer;` with `use PXC\JsonApi\Client\ItemDocumentSerializerInterface;`
 - Change the other part of the file accordingly.
-
-More details refer to the commit `1a9a963`.
 
 ## Installation
 
