@@ -12,7 +12,7 @@ use Http\Message\MessageFactory;
 use Illuminate\Foundation\Application;
 use Swis\JsonApi\Client\Interfaces\ClientInterface as ApiClientInterface;
 use Swis\JsonApi\Client\Interfaces\ResponseParserInterface;
-use \JsonSerializable;
+use PXC\JsonApi\Client\ItemDocumentSerializerInterface;
 use PXC\JsonApi\Client\ClientRequest;
 use PXC\JsonApi\Client\MachineRequest;
 
@@ -37,7 +37,7 @@ class ServiceProvider extends BaseServiceProvider
             function (Application $app) {
                 return new ClientRequest(
                     $app->make(ApiClientInterface::class),
-                    new JsonSerializable(),
+                    $app->make(ItemDocumentSerializerInterface::class),
                     $app->make(ResponseParserInterface::class)
                 );
             }
@@ -48,7 +48,7 @@ class ServiceProvider extends BaseServiceProvider
             function (Application $app) {
                 return new MachineRequest(
                     $app->make(ApiClientInterface::class),
-                    new JsonSerializable(),
+                    $app->make(ItemDocumentSerializerInterface::class),
                     $app->make(ResponseParserInterface::class)
                 );
             }
